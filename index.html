@@ -238,50 +238,40 @@ nav {
   gap: 20px;
 }
 
-.btn-resume {
-  display: block;
-  font-family: var(--font-pixel);
-  font-size: calc(11 * var(--px));
-  color: var(--warm-cream);
-  padding: 14px 0;
-  width: 260px;
-  text-align: center;
-  border: 3px solid var(--warm-cream);
-  border-radius: 6px;
-  background: rgba(255,255,255,0.04);
-  cursor: pointer;
-  animation: fadeDown 0.8s 1s both;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-  letter-spacing: 2px;
-}
-
-.btn-resume:hover {
-  background: rgba(255,255,255,0.1);
-  box-shadow: 0 0 30px rgba(255,255,255,0.1);
-  transform: scale(1.03);
-}
-
 .press-start {
   display: block;
   font-family: var(--font-pixel);
-  font-size: calc(11 * var(--px));
+  font-size: calc(14 * var(--px));
   color: var(--light-pink);
-  padding: 14px 0;
-  width: 260px;
+  padding: 20px 0;
+  width: 300px;
   text-align: center;
   border: 3px solid var(--light-pink);
   border-radius: 6px;
-  background: rgba(240,144,192,0.06);
+  background: rgba(240,144,192,0.08);
   cursor: pointer;
-  animation: fadeDown 0.8s 0.8s both, blink 1.8s 2s infinite;
-  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-  letter-spacing: 2px;
+  animation: fadeDown 0.8s 0.8s both, startPulse 2s 1.8s infinite;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  letter-spacing: 3px;
+  position: relative;
 }
 
 .press-start:hover {
-  background: rgba(240,144,192,0.15);
-  box-shadow: 0 0 30px rgba(240,144,192,0.2);
-  transform: scale(1.03);
+  background: rgba(240,144,192,0.2);
+  box-shadow: 0 0 40px rgba(240,144,192,0.45), 0 0 80px rgba(224,64,154,0.2);
+  transform: scale(1.06);
+  animation: none;
+}
+
+@keyframes startPulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(240,144,192,0.3), 0 0 20px rgba(224,64,154,0.15);
+    border-color: var(--light-pink);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(240,144,192,0.7), 0 0 48px rgba(224,64,154,0.35);
+    border-color: var(--warm-pink);
+  }
 }
 
 .title-hint {
@@ -963,7 +953,6 @@ footer {
       <p class="title-screen-tagline">QA & Development Testing // Game Systems & Design</p>
       <div class="hero-buttons">
         <a href="#about" class="press-start">[ Start ]</a>
-        <a href="resume.pdf" class="btn-resume">Download Resume</a>
       </div>
       <p class="title-hint">Keep an eye out for bugs!</p>
     </div>
@@ -1148,24 +1137,23 @@ footer {
 </div>
 
       <!-- Project 4 -->
-      <div class="quest-card" data-category="report">
+      <div class="quest-card" data-category="game">
         <div class="quest-card-header">
-          <span class="quest-card-title">R6S QA Report</span>
+          <span class="quest-card-title">Solar System Explorer</span>
           <span class="quest-status active">Active</span>
         </div>
         <div class="quest-card-body">
           <p class="quest-card-desc">
-            Professional test report documenting bugs in Rainbow Six Siege.
-            Industry-standard format with severity classification,
-            reproduction steps, and recommendations.
+            An interactive 3D space simulation featuring planets, comets, and UI elements using Unity.
+            Deployed to web (HTML5), Windows, and macOS.
           </p>
           <div class="quest-tags">
-            <span class="quest-tag">QA Methodology</span>
-            <span class="quest-tag">Bug Reporting</span>
-            <span class="quest-tag">R6S</span>
+            <span class="quest-tag">Unity</span>
+            <span class="quest-tag">C#</span>
+            <span class="quest-tag">Blender</span>
           </div>
           <div class="quest-links">
-            <a href="#" class="quest-link">View Report</a>
+            <a href="https://jelybyte.itch.io/solar-system-explorer" class="quest-link">Itch.io</a>
           </div>
         </div>
       </div>
@@ -1242,6 +1230,7 @@ footer {
           <span class="skill-node">HTML5</span>
           <span class="skill-node">CSS3</span>
           <span class="skill-node">C++</span>
+          <span class="skill-node">C#</span>
         </div>
       </div>
 
@@ -1257,6 +1246,7 @@ footer {
           <span class="skill-node">Git/Github</span>
           <span class="skill-node">Unity</span>
           <span class="skill-node">Unreal Engine</span>
+          <span class="skill-node">Blender</span>
         </div>
       </div>
     </div>
@@ -1298,6 +1288,13 @@ footer {
         <div class="achievement-badge" style="opacity: 0.4;">🔒</div>
         <div class="achievement-info">
           <h3 style="color: var(--text-muted);">Google Cybersecurity Professional Certificate</h3>
+        </div>
+      </div>
+
+      <div class="achievement in-progress">
+        <div class="achievement-badge" style="opacity: 0.4;">🔒</div>
+        <div class="achievement-info">
+          <h3 style="color: var(--text-muted);">Epic Games Game Design Professional Certificate</h3>
         </div>
       </div>
 
