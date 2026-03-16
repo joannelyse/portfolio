@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joanna McCormack | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* VARIABLES */
+:root {
+  --bg-dark: #160f1e;
+  --bg-darker: #0f0c18;
+  --bg-section: #1e1428;
+
+  --warm-cream: #f8e8f0;
+  --pastel-pink: #e8aac8;
+  --magenta: #e0409a;
+  --dark-pink: #b83060;
+  --warm-pink: #e870b0;
+  --light-pink: #f090c0;
+  --light-blue: #5070c0;
+  --lavender: #b090f8;
+  --warm-lavender: #c090e8;
+
+  --text-light: #f0e4ed;
+  --text-mid: #c0a0b8;
+  --text-muted: #806878;
+  --text-dark: #2a1828;
+
+  --border-warm: #3c2848;
+  --card-bg: #261a30;
+  --card-hover: #32243c;
+
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-title: 'Press Start 2P', monospace;
+  --font-body: 'Space Grotesk', sans-serif;
+  --px: clamp(1px, 0.083vw, 1.6px);
+}
+
+/* RESET */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* BUG COUNTER */
+
+.bug-counter {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background: var(--bg-darker);
+  border: 2px solid var(--magenta);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--magenta);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 0 20px rgba(224,64,154,0.15);
+  transition: transform 0.3s;
+}
+
+.bug-counter:hover { transform: scale(1.05); }
+
+.bug-counter .bug-icon { font-size: 20px; }
+.bug-counter .bug-num {
+  color: var(--light-pink);
+  min-width: 24px;
+  text-align: right;
+}
+
+.bug-toast {
+  position: fixed;
+  bottom: 96px;
+  right: 20px;
+  z-index: 998;
+  background: var(--card-bg);
+  border: 2px solid var(--border-warm);
+  border-left: 4px solid var(--dark-pink);
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--warm-cream);
+  max-width: 300px;
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: none;
+}
+
+.bug-toast.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* NAV BAR */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 32px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(15,12,24,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--border-warm);
+}
+
+.nav-brand {
+  font-family: var(--font-pixel);
+  font-size: calc(11 * var(--px));
+  color: var(--warm-cream);
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--text-mid);
+  padding: 6px 16px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+
+.nav-links a:hover {
+  color: var(--light-pink);
+  border-color: var(--light-pink);
+  background: rgba(240,144,192,0.06);
+}
+
+/* TITLE SCREEN */
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 960px;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(224,64,154,0.04) 0%, transparent 70%),
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+  pointer-events: none;
+}
+
+
+.title-screen-label {
+  font-family: var(--font-pixel);
+  font-size: calc(10 * var(--px));
+  color: var(--text-muted);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  animation: fadeDown 0.8s 0.2s both;
+}
+
+.title-screen-name {
+  font-family: var(--font-title);
+  font-size: clamp(18px, 3vw, 52px);
+  color: var(--warm-cream);
+  line-height: 1.1;
+  margin-bottom: 12px;
+  animation: fadeDown 0.8s 0.4s both;
+}
+
+.title-screen-name span {
+  color: var(--magenta);
+}
+
+.title-screen-tagline {
+  font-family: var(--font-pixel);
+  font-size: clamp(8px, 1.1vw, 18px);
+  color: var(--pastel-pink);
+  margin-bottom: 48px;
+  animation: fadeDown 0.8s 0.6s both;
+}
+
+.title-screen-name,
+.title-screen-tagline {
+  text-align: center;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.btn-resume {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: calc(11 * var(--px));
+  color: var(--warm-cream);
+  padding: 14px 0;
+  width: 260px;
+  text-align: center;
+  border: 3px solid var(--warm-cream);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  cursor: pointer;
+  animation: fadeDown 0.8s 1s both;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  letter-spacing: 2px;
+}
+
+.btn-resume:hover {
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 30px rgba(255,255,255,0.1);
+  transform: scale(1.03);
+}
+
+.press-start {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: calc(11 * var(--px));
+  color: var(--light-pink);
+  padding: 14px 0;
+  width: 260px;
+  text-align: center;
+  border: 3px solid var(--light-pink);
+  border-radius: 6px;
+  background: rgba(240,144,192,0.06);
+  cursor: pointer;
+  animation: fadeDown 0.8s 0.8s both, blink 1.8s 2s infinite;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+  letter-spacing: 2px;
+}
+
+.press-start:hover {
+  background: rgba(240,144,192,0.15);
+  box-shadow: 0 0 30px rgba(240,144,192,0.2);
+  transform: scale(1.03);
+}
+
+.title-hint {
+  font-family: var(--font-pixel);
+  font-size: calc(10 * var(--px));
+  color: var(--light-blue);
+  margin-top: 40px;
+  animation: fadeDown 0.8s 1.2s both;
+}
+
+.title-hint span {
+  color: var(--lavender);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTION FRAMES */
+
+.game-section {
+  padding: 100px 24px;
+  position: relative;
+}
+
+.section-frame {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.section-hud {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.section-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.section-hud-text h2 {
+  font-family: var(--font-pixel);
+  font-size: clamp(11px, 1.5vw, 24px);
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.section-hud-text p {
+  font-size: 15px;
+  color: var(--text-mid);
+  margin-top: 4px;
+}
+
+.section-divider {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border-warm), transparent);
+}
+
+/* PROJECTS */
+
+#projects { background: var(--bg-dark); }
+#projects .section-icon {
+  background: rgba(224,64,154,0.1);
+  border-color: var(--magenta);
+  color: var(--magenta);
+}
+#projects h2 { color: var(--magenta); }
+
+.quest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Project filter tabs */
+
+.project-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  padding: 8px 20px;
+  background: transparent;
+  border: 2px solid var(--border-warm);
+  border-radius: 6px;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  border-color: var(--magenta);
+  color: var(--magenta);
+  background: rgba(232,148,74,0.08);
+}
+
+.quest-card {
+  background: var(--card-bg);
+  border: 2px solid var(--border-warm);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.quest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.quest-card-header {
+  padding: 16px 20px 12px;
+  border-bottom: 2px solid var(--border-warm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quest-status {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  padding: 2px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.quest-status.complete {
+  background: rgba(80,112,192,0.12);
+  color: var(--light-blue);
+  border: 1px solid rgba(80,112,192,0.3);
+}
+
+.quest-status.active {
+  background: rgba(240,144,192,0.12);
+  color: var(--light-pink);
+  border: 1px solid rgba(240,144,192,0.3);
+}
+
+.quest-card-title {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--warm-cream);
+  letter-spacing: 1px;
+}
+
+.quest-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.quest-card-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.quest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.quest-tag {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-mid);
+}
+
+.quest-links {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.quest-link {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--lavender);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.quest-link:hover {
+  border-color: var(--lavender);
+  color: var(--warm-cream);
+}
+
+.quest-card:nth-child(1):hover { border-color: var(--magenta); }
+.quest-card:nth-child(2):hover { border-color: var(--warm-pink); }
+.quest-card:nth-child(3):hover { border-color: var(--light-blue); }
+
+/* SKILLS */
+
+#skills { background: var(--bg-section); }
+#skills .section-icon {
+  background: rgba(192,144,232,0.1);
+  border-color: var(--warm-lavender);
+  color: var(--warm-lavender);
+}
+#skills h2 { color: var(--warm-lavender); }
+
+.skill-tree {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.skill-branch {
+  background: var(--card-bg);
+  border: 2px solid var(--border-warm);
+  border-radius: 10px;
+  padding: 24px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.skill-branch:hover { transform: translateY(-4px); }
+.skill-branch:nth-child(1):hover { border-color: var(--magenta); }
+.skill-branch:nth-child(2):hover { border-color: var(--dark-pink); }
+.skill-branch:nth-child(3):hover { border-color: var(--lavender); }
+.skill-branch:nth-child(4):hover { border-color: var(--light-blue); }
+.skill-branch:nth-child(5):hover { border-color: var(--warm-lavender); }
+
+.skill-branch-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.skill-branch-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.skill-branch-title {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  letter-spacing: 1px;
+}
+
+.skill-branch:nth-child(1) .skill-branch-title { color: var(--magenta); }
+.skill-branch:nth-child(2) .skill-branch-title { color: var(--dark-pink); }
+.skill-branch:nth-child(3) .skill-branch-title { color: var(--lavender); }
+.skill-branch:nth-child(4) .skill-branch-title { color: var(--light-blue); }
+.skill-branch:nth-child(5) .skill-branch-title { color: var(--warm-lavender); }
+
+.skill-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-node {
+  font-size: 13px;
+  color: var(--text-mid);
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.skill-node:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.skill-xp {
+  margin-top: 14px;
+}
+
+.xp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.xp-label {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--text-muted);
+  min-width: 80px;
+}
+
+.xp-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.xp-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.16,1,0.3,1);
+  width: 0;
+}
+
+.xp-fill.magenta { background: var(--magenta); }
+.xp-fill.dark-pink { background: var(--dark-pink); }
+.xp-fill.lavender { background: var(--lavender); }
+.xp-fill.light-blue { background: var(--light-blue); }
+
+/* CERTIFICATES */
+#certs { background: var(--bg-dark); }
+#certs .section-icon {
+  background: rgba(240,144,192,0.1);
+  border-color: var(--light-pink);
+  color: var(--light-pink);
+}
+#certs h2 { color: var(--light-pink); }
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.achievement {
+  background: var(--card-bg);
+  border: 2px solid var(--border-warm);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.achievement:hover {
+  transform: translateY(-3px);
+  border-color: var(--light-pink);
+}
+
+.achievement-badge {
+  width: 48px;
+  height: 48px;
+  background: rgba(240,144,192,0.1);
+  border: 2px solid var(--light-pink);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.achievement-info h3 {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--warm-cream);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.achievement-info p {
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.5;
+}
+
+.achievement-info .cert-year {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--light-pink);
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.achievement.unlocked,
+.achievement.in-progress {
+  position: relative;
+  padding-bottom: 36px;
+}
+
+.achievement.unlocked::after {
+  content: 'UNLOCKED';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-family: var(--font-pixel);
+  font-size: calc(7 * var(--px));
+  color: var(--light-blue);
+  letter-spacing: 1px;
+}
+
+.achievement.in-progress::after {
+  content: 'IN PROGRESS';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-family: var(--font-pixel);
+  font-size: calc(7 * var(--px));
+  color: var(--light-pink);
+  letter-spacing: 1px;
+}
+
+/* ABOUT ME */
+#about { background: var(--bg-section); }
+#about .section-icon {
+  background: rgba(232,112,176,0.1);
+  border-color: var(--light-pink);
+  color: var(--warm-pink);
+}
+#about h2 { color: var(--warm-pink); }
+
+.character-sheet {
+  background: var(--card-bg);
+  border: 2px solid var(--border-warm);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.character-header {
+  padding: 28px 32px;
+  border-bottom: 2px solid var(--border-warm);
+  background: rgba(232,112,176,0.04);
+}
+
+.character-name {
+  font-family: var(--font-pixel);
+  font-size: calc(13 * var(--px));
+  color: var(--warm-cream);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.character-class {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--warm-pink);
+  letter-spacing: 1px;
+}
+
+.character-body {
+  padding: 28px 32px;
+}
+
+.character-bio {
+  font-size: 16px;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.character-bio strong {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.character-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+  padding: 20px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+  border: 1px solid var(--border-warm);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat-icon { font-size: 20px; }
+
+.stat-label {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  color: var(--warm-cream);
+}
+
+/* CONTACT */
+
+.contact-bar {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border-warm);
+}
+
+.contact-bar-title {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--light-blue);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: calc(8 * var(--px));
+  padding: 10px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 2px solid var(--border-warm);
+  border-radius: 6px;
+  color: var(--text-mid);
+  transition: all 0.25s;
+  letter-spacing: 1px;
+}
+
+.contact-link:hover {
+  border-color: var(--light-blue);
+  color: var(--light-blue);
+  background: rgba(80,112,192,0.06);
+  transform: translateY(-2px);
+}
+
+.contact-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 28px 24px;
+  text-align: center;
+  border-top: 2px solid var(--border-warm);
+  background: var(--bg-darker);
+}
+
+.footer-text {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.footer-pixel {
+  font-family: var(--font-pixel);
+  font-size: calc(9 * var(--px));
+  color: var(--text-muted);
+  margin-top: 8px;
+  opacity: 0.5;
+  letter-spacing: 2px;
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* STAGGERED CHILDREN */
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.08s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.16s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.24s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(5) { transition-delay: 0.32s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(6) { transition-delay: 0.40s; opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-links a { font-size: calc(9 * var(--px)); padding: 6px 10px; }
+  .game-section { padding: 70px 16px; }
+  .character-header, .character-body { padding: 20px; }
+  .bug-counter { bottom: 12px; right: 12px; font-size: calc(10 * var(--px)); padding: 8px 12px; }
+  .bug-toast { bottom: 64px; right: 12px; font-size: calc(9 * var(--px)); max-width: 240px; }
+
+  #home { padding: 100px 24px 60px; }
+  .hero-content { align-items: center; text-align: center; }
+  .hero-text { text-align: center; }
+  .hero-buttons { align-items: center; padding-left: 0; }
+  .title-screen-name,
+  .title-screen-tagline { text-align: center; }
+  .title-hint { padding-left: 0; text-align: center; }
+  .skill-tree { grid-template-columns: 1fr; }
+  .achievement-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .nav-brand { font-size: calc(9 * var(--px)); }
+  .nav-links { gap: 4px; }
+  .nav-links a { font-size: calc(8 * var(--px)); padding: 6px 8px; }
+  .quest-grid { grid-template-columns: 1fr; }
+  .skill-tree { grid-template-columns: 1fr; }
+  .achievement-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">JOANNA_M</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Quests</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certs">Achievements</a></li>
+  </ul>
+</nav>
+
+<!-- BUG COUNTER -->
+<div class="bug-counter">
+  <span class="bug-icon">🪲</span>
+  <span>Bugs Detected:</span>
+  <span class="bug-num" id="bugCount">0</span>
+</div>
+
+<div class="bug-toast" id="bugToast"></div>
+
+<!-- TITLE SCREEN -->
+<section id="home">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="title-screen-name">Joanna <span>McCormack</span></h1>
+      <p class="title-screen-tagline">QA & Development Testing // Game Systems & Design</p>
+      <div class="hero-buttons">
+        <a href="#about" class="press-start">[ Start ]</a>
+        <a href="resume.pdf" class="btn-resume">Download Resume</a>
+      </div>
+      <p class="title-hint">Keep an eye out for bugs!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-divider"></div>
+<section id="about" class="game-section">
+  <div class="section-frame">
+    <div class="section-hud reveal">
+      <div class="section-icon">👤</div>
+      <div class="section-hud-text">
+        <h2>Character Select</h2>
+        <p>Get to know the player</p>
+      </div>
+    </div>
+
+    <div class="character-sheet reveal">
+      <div class="character-header">
+        <div class="character-name">Joanna McCormack</div>
+        <div class="character-class">Class: Computer Science Graduate</div>
+      </div>
+      <div class="character-body">
+        <p class="character-bio">
+          I'm a <strong>Computer Science graduate from FAU</strong> with a minor
+          in Cybersecurity who enjoys the investigative side of software
+          development like finding bugs, analyzing systems, and improving the
+          overall user experience.
+        </p>
+        <p class="character-bio">
+          My projects include <strong>QA testing, cybersecurity analysis, web
+          applications, game development, and database design</strong>. I like breaking things
+          (responsibly), figuring out why they broke, and helping make them
+          more stable.
+        </p>
+        <p class="character-bio">
+          I am currently seeking opportunities where I can help <strong>improve system reliability,
+          gameplay stability, and overall product quality.</strong> If you're building something
+          players will love, I'd love to help make sure it ships at its best.
+        </p>
+
+        <div class="character-stats">
+          <div class="stat">
+            <span class="stat-icon">📍</span>
+            <div>
+              <div class="stat-label">Location</div>
+              <div class="stat-value">Florida, US</div>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">🎓</span>
+            <div>
+              <div class="stat-label">Studying</div>
+              <div class="stat-value">Game Design & Dev</div>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">🎯</span>
+            <div>
+              <div class="stat-label">Seeking</div>
+              <div class="stat-value">QA / Dev Testing</div>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="stat-icon">🔍</span>
+            <div>
+              <div class="stat-label">Strength</div>
+              <div class="stat-value">Gameplay Analysis</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact links -->
+        <div class="contact-bar">
+          <div class="contact-bar-title">Connect: </div>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/joanna-mccormack-94a2612ab" class="contact-link" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/joannelyse" class="contact-link" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <a href="mailto:joannamc2003@gmail.com" class="contact-link">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              Email
+            </a>
+            <a href="https://discord.com/users/jelybanana" class="contact-link" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+              Discord
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="section-divider"></div>
+<section id="projects" class="game-section">
+  <div class="section-frame">
+    <div class="section-hud reveal">
+      <div class="section-icon">📋</div>
+      <div class="section-hud-text">
+        <h2>Quest Log</h2>
+        <p>Active and completed projects</p>
+      </div>
+    </div>
+
+    <div class="quest-grid reveal-stagger">
+      <!-- Project 1 -->
+      <div class="quest-card" data-category="qa">
+        <div class="quest-card-header">
+          <span class="quest-card-title">Siege Bug Tracker</span>
+          <span class="quest-status active">Active</span>
+        </div>
+        <div class="quest-card-body">
+          <p class="quest-card-desc">
+            QA bug tracking tool for Rainbow Six Siege. Dashboard with stats,
+            filterable bug list, detailed reports with reproduction steps,
+            and status lifecycle management.
+          </p>
+          <div class="quest-tags">
+            <span class="quest-tag">React</span>
+            <span class="quest-tag">QA Testing</span>
+            <span class="quest-tag">Game Dev</span>
+          </div>
+          <div class="quest-links">
+            <a href="https://github.com/joannelyse/siege-bug-tracker" class="quest-link" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="quest-card" data-category="web">
+        <div class="quest-card-header">
+          <span class="quest-card-title">Sketchy Web</span>
+          <span class="quest-status complete">Complete</span>
+        </div>
+        <div class="quest-card-body">
+          <p class="quest-card-desc">
+            Browser-based drawing app with freehand tools, color picker,
+            brush sizes, and eraser. Submit drawings with title and artist
+            name via Forminit.
+          </p>
+          <div class="quest-tags">
+            <span class="quest-tag">HTML5 Canvas</span>
+            <span class="quest-tag">JavaScript</span>
+            <span class="quest-tag">Forminit</span>
+          </div>
+          <div class="quest-links">
+            <a href="https://github.com/joannelyse/sketchy-web" class="quest-link" target="_blank">GitHub</a>
+            <a href="https://joannelyse.github.io/sketchy-web/" class="quest-link" target="_blank">Live Demo</a>
+          </div>
+        </div>
+      </div>
+ <!-- Project 3 -->     
+<div class="quest-card" data-category="qa">
+  <div class="quest-card-header">
+    <span class="quest-card-title">NetBreak Test Suite</span>
+    <span class="quest-status complete">Complete</span>
+  </div>
+  <div class="quest-card-body">
+    <p class="quest-card-desc">
+      209 automated tests across four interconnected game systems
+      using pytest. Covers agents, loadouts, economy, and matchmaking
+      with edge case and boundary value testing.
+    </p>
+    <div class="quest-tags">
+      <span class="quest-tag">Python</span>
+      <span class="quest-tag">pytest</span>
+      <span class="quest-tag">QA Testing</span>
+    </div>
+    <div class="quest-links">
+      <a href="https://github.com/joannelyse/game-test-suite"
+         class="quest-link" target="_blank">GitHub</a>
+    </div>
+  </div>
+</div>
+
+      <!-- Project 4 -->
+      <div class="quest-card" data-category="report">
+        <div class="quest-card-header">
+          <span class="quest-card-title">R6S QA Report</span>
+          <span class="quest-status active">Active</span>
+        </div>
+        <div class="quest-card-body">
+          <p class="quest-card-desc">
+            Professional test report documenting bugs in Rainbow Six Siege.
+            Industry-standard format with severity classification,
+            reproduction steps, and recommendations.
+          </p>
+          <div class="quest-tags">
+            <span class="quest-tag">QA Methodology</span>
+            <span class="quest-tag">Bug Reporting</span>
+            <span class="quest-tag">R6S</span>
+          </div>
+          <div class="quest-links">
+            <a href="#" class="quest-link">View Report</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<div class="section-divider"></div>
+<section id="skills" class="game-section">
+  <div class="section-frame">
+    <div class="section-hud reveal">
+      <div class="section-icon">🌟</div>
+      <div class="section-hud-text">
+        <h2>Skill Tree</h2>
+        <p>Abilities unlocked so far</p>
+      </div>
+    </div>
+
+    <div class="skill-tree reveal-stagger">
+      <div class="skill-branch">
+        <div class="skill-branch-header">
+          <span class="skill-branch-icon">🔍</span>
+          <h3 class="skill-branch-title">QA & Gameplay Testing</h3>
+        </div>
+        <div class="skill-nodes">
+          <span class="skill-node">Functional Testing</span>
+          <span class="skill-node">Bug Reproduction</span>
+          <span class="skill-node">Playtesting</span>
+          <span class="skill-node">Gameplay Systems Analysis</span>
+          <span class="skill-node">Player Experience Evaluation</span>
+          <span class="skill-node">Test Case Documentation</span>
+          <span class="skill-node">Edge Case Analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-branch">
+        <div class="skill-branch-header">
+          <span class="skill-branch-icon">🛡️</span>
+          <h3 class="skill-branch-title">Web & Game Development</h3>
+        </div>
+        <div class="skill-nodes">
+          <span class="skill-node">Frontend Debugging</span>
+          <span class="skill-node">UX/UI Design</span>
+          <span class="skill-node">Interactive Prototyping</span>
+          <span class="skill-node">Software Design Principles</span>
+          <span class="skill-node">3D Modeling (Blender)</span>
+        </div>
+      </div>
+
+      <div class="skill-branch">
+        <div class="skill-branch-header">
+          <span class="skill-branch-icon">💻</span>
+          <h3 class="skill-branch-title">Cybersecurity</h3>
+        </div>
+        <div class="skill-nodes">
+          <span class="skill-node">Threat Detection</span>
+          <span class="skill-node">Log Analysis</span>
+          <span class="skill-node">Network Traffic Analysis</span>
+          <span class="skill-node">IOC Identification</span>
+          <span class="skill-node">Security Monitoring</span>
+        </div>
+      </div>
+
+      <div class="skill-branch">
+        <div class="skill-branch-header">
+          <span class="skill-branch-icon">🗄️</span>
+          <h3 class="skill-branch-title">Programming</h3>
+        </div>
+        <div class="skill-nodes">
+          <span class="skill-node">JavaScript</span>
+          <span class="skill-node">Python</span>
+          <span class="skill-node">SQL</span>
+          <span class="skill-node">HTML5</span>
+          <span class="skill-node">CSS3</span>
+          <span class="skill-node">C++</span>
+        </div>
+      </div>
+
+      <div class="skill-branch">
+        <div class="skill-branch-header">
+          <span class="skill-branch-icon">🧰</span>
+          <h3 class="skill-branch-title">Tools</h3>
+        </div>
+        <div class="skill-nodes">
+          <span class="skill-node">Xray</span>
+          <span class="skill-node">Wireshark</span>
+          <span class="skill-node">Splunk</span>
+          <span class="skill-node">Git/Github</span>
+          <span class="skill-node">Unity</span>
+          <span class="skill-node">Unreal Engine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<div class="section-divider"></div>
+<section id="certs" class="game-section">
+  <div class="section-frame">
+    <div class="section-hud reveal">
+      <div class="section-icon">🏆</div>
+      <div class="section-hud-text">
+        <h2>Achievements</h2>
+        <p>Credentials and certifications</p>
+      </div>
+    </div>
+
+    <div class="achievement-grid reveal-stagger">
+      <div class="achievement unlocked">
+        <div class="achievement-badge">📜</div>
+        <div class="achievement-info">
+          <h3>[CodePath] Intermediate Cybersecurity Course</h3>
+          <p>Hands-on experience in blue-team security, threat detection, & incident response.</p>
+          <span class="cert-year">2025</span>
+        </div>
+      </div>
+
+      <div class="achievement unlocked">
+        <div class="achievement-badge">📜</div>
+        <div class="achievement-info">
+          <h3>[CodePath] Intermediate iOS Development Course</h3>
+          <p>Project-based program focusing on advanced Swift, complex API integration, and building custom applications using Apple SDKs.</p>
+          <span class="cert-year">2024</span>
+        </div>
+      </div>
+
+      <div class="achievement in-progress">
+        <div class="achievement-badge" style="opacity: 0.4;">🔒</div>
+        <div class="achievement-info">
+          <h3 style="color: var(--text-muted);">Google Cybersecurity Professional Certificate</h3>
+        </div>
+      </div>
+
+      <div class="achievement in-progress">
+        <div class="achievement-badge" style="opacity: 0.4;">🔒</div>
+        <div class="achievement-info">
+          <h3 style="color: var(--text-muted);">Game Design and Development with Unity Specialization</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-text">&copy; 2026 Joanna McCormack. Built from scratch.</p>
+  <p class="footer-pixel">GAME OVER? NEVER.</p>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+function filterProjects(category) {
+  var cards = document.querySelectorAll('.quest-card');
+  var buttons = document.querySelectorAll('.filter-btn');
+
+  buttons.forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  event.target.classList.add('active');
+
+  cards.forEach(function(card) {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+(function() {
+  // ── Scroll Reveal ──
+  var reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+
+  function checkReveal() {
+    var windowH = window.innerHeight;
+    reveals.forEach(function(el) {
+      if (el.getBoundingClientRect().top < windowH - 60) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', checkReveal);
+  checkReveal();
+
+  // ── Bug Counter ──
+  var bugCount = 0;
+  var bugEl = document.getElementById('bugCount');
+  var toastEl = document.getElementById('bugToast');
+  var toastTimer = null;
+
+  var bugMessages = [
+    "Bug #001: Portfolio loaded successfully... suspicious.",
+    "Bug #002: Contact links dangerously clickable.",
+    "Bug #003: Quest Log section rendered too nicely.",
+    "Bug #004: Visitor is still reading. Unexpected behavior.",
+    "Bug #005: Scroll velocity exceeded expectations.",
+    "Bug #006: Recruiter detected. Deploying charm protocol.",
+    "Bug #007: Achievement unlocked — you're still here!",
+  ];
+
+  var bugTriggers = [];
+  var nextBugIndex = 0;
+  var bugQueue = 0;
+  var bugDraining = false;
+  var BUG_INTERVAL = 4000;
+  var sectionsForBugs = [
+    { sel: '#about',    edge: 'bottom', threshold: 1.0 },
+    { sel: '#projects', edge: 'top',    threshold: 0.4 },
+    { sel: '#skills',   edge: 'top',    threshold: 0.6 },
+    { sel: '#certs',    edge: 'top',    threshold: 0.6 },
+  ];
+
+  function checkBugTriggers() {
+    sectionsForBugs.forEach(function(trigger, i) {
+      if (bugTriggers[i]) return;
+      var el = document.querySelector(trigger.sel);
+      if (!el) return;
+      var rect = el.getBoundingClientRect();
+      var hit = trigger.edge === 'bottom'
+        ? rect.bottom < window.innerHeight * trigger.threshold
+        : rect.top    < window.innerHeight * trigger.threshold;
+      if (hit) {
+        bugTriggers[i] = true;
+        spawnBug();
+      }
+    });
+  }
+
+  var scrollBugs = [600, 2000, 4000, 6500];
+  var scrollBugTriggered = [];
+
+  function checkScrollBugs() {
+    var scrollY = window.scrollY;
+    scrollBugs.forEach(function(threshold, i) {
+      if (scrollBugTriggered[i]) return;
+      if (scrollY > threshold) {
+        scrollBugTriggered[i] = true;
+        spawnBug();
+      }
+    });
+  }
+
+  function spawnBug() {
+    if (nextBugIndex + bugQueue >= bugMessages.length) return;
+    bugQueue++;
+    if (!bugDraining) drainQueue();
+  }
+
+  function drainQueue() {
+    if (bugQueue <= 0) { bugDraining = false; return; }
+    bugDraining = true;
+    bugQueue--;
+    bugCount++;
+    bugEl.textContent = bugCount;
+    showToast(bugMessages[nextBugIndex]);
+    nextBugIndex++;
+    setTimeout(drainQueue, BUG_INTERVAL);
+  }
+
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toastEl.classList.remove('visible');
+    }, 3200);
+  }
+
+  window.addEventListener('scroll', function() {
+    checkBugTriggers();
+    checkScrollBugs();
+  });
+
+  // First bug
+  setTimeout(function() {
+    spawnBug();
+  }, 2000);
+})();
+</script>
+
+</body>
+</html>
