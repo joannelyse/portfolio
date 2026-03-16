@@ -362,6 +362,7 @@ nav {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
+  align-items: stretch;
 }
 
 /* Project filter tabs */
@@ -413,27 +414,6 @@ nav {
   border-bottom: 2px solid var(--border-warm);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.quest-status {
-  font-family: var(--font-pixel);
-  font-size: calc(8 * var(--px));
-  padding: 2px 10px;
-  border-radius: 4px;
-  letter-spacing: 1px;
-}
-
-.quest-status.complete {
-  background: rgba(80,112,192,0.12);
-  color: var(--light-blue);
-  border: 1px solid rgba(80,112,192,0.3);
-}
-
-.quest-status.active {
-  background: rgba(240,144,192,0.12);
-  color: var(--light-pink);
-  border: 1px solid rgba(240,144,192,0.3);
 }
 
 .quest-card-title {
@@ -455,6 +435,7 @@ nav {
   color: var(--text-mid);
   margin-bottom: 16px;
   line-height: 1.6;
+  flex: 1;
 }
 
 .quest-tags {
@@ -1070,7 +1051,6 @@ footer {
       <div class="quest-card" data-category="qa">
         <div class="quest-card-header">
           <span class="quest-card-title">Siege Bug Tracker</span>
-          <span class="quest-status active">Active</span>
         </div>
         <div class="quest-card-body">
           <p class="quest-card-desc">
@@ -1093,7 +1073,6 @@ footer {
       <div class="quest-card" data-category="web">
         <div class="quest-card-header">
           <span class="quest-card-title">Sketchy Web</span>
-          <span class="quest-status complete">Complete</span>
         </div>
         <div class="quest-card-body">
           <p class="quest-card-desc">
@@ -1116,7 +1095,6 @@ footer {
 <div class="quest-card" data-category="qa">
   <div class="quest-card-header">
     <span class="quest-card-title">NetBreak Test Suite</span>
-    <span class="quest-status complete">Complete</span>
   </div>
   <div class="quest-card-body">
     <p class="quest-card-desc">
@@ -1140,7 +1118,6 @@ footer {
       <div class="quest-card" data-category="game">
         <div class="quest-card-header">
           <span class="quest-card-title">Solar System Explorer</span>
-          <span class="quest-status active">Active</span>
         </div>
         <div class="quest-card-body">
           <p class="quest-card-desc">
